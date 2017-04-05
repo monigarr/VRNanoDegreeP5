@@ -18,19 +18,31 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class SwitchVideos : MonoBehaviour {
-  public GameObject localVideoSample;
+  public GameObject flatobbVideoSample;
   public GameObject dashVideoSample;
-  public GameObject panoVideoSample;
+  public GameObject sphereVideoSample;
+
+  //SkyBoxes
+  public Material skyOne;
+public Material skyTwo;
+public Material skyThree;
+public Material skyFour;
+public Material skyFive;
+public Material skySix;
 
   private GameObject[] videoSamples;
 
   public Text missingLibText;
 
+	void Start(){
+		
+	}
+
   public void Awake() {
     videoSamples = new GameObject[3];
-    videoSamples[0] = localVideoSample;
+    videoSamples[0] = flatobbVideoSample;
     videoSamples[1] = dashVideoSample;
-    videoSamples[2] = panoVideoSample;
+    videoSamples[2] = sphereVideoSample;
 
     string NATIVE_LIBS_MISSING_MESSAGE = "Video Support libraries not found or could not be loaded!\n" +
           "Please add the <b>GVRVideoPlayer.unitypackage</b>\n to this project";
@@ -55,18 +67,22 @@ public class SwitchVideos : MonoBehaviour {
 
   public void ShowMainMenu() {
     ShowSample(-1);
+		RenderSettings.skybox = skyOne;
   }
 
   public void OnFlatLocal() {
     ShowSample(0);
+		RenderSettings.skybox = skyTwo;
   }
 
   public void OnDash() {
     ShowSample(1);
+		RenderSettings.skybox = skyThree;
   }
 
   public void On360Video() {
     ShowSample(2);
+		RenderSettings.skybox = skyFour;
   }
 
   private void ShowSample(int index) {
